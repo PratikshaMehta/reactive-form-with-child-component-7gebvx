@@ -1,0 +1,29 @@
+<form [formGroup]="myFormFather" (ngSubmit)="onSubmit()">
+  Nickname: <input formControlName="nickName" /><br />
+  Name: <input formControlName="name" /><br />
+  <my-form-child [ageForm]="myFormFather" testprop="testproperty">
+    <br />
+    child control 1: <input formControlName="ChildCtrl1" type="text" /><br />
+    child control 2:
+    <select id="fruit" formControlName="ChildCtrl2">
+    <option *ngFor="let item of testarry" [ngValue]="item">{{item.title}}</option>
+  </select>
+
+    child control 3:
+    <input type="checkbox" formControlName="ChildCtrl3" />test checkbox
+    <br />
+    <custom-input label="Default component (not connected to form)">
+    </custom-input>
+    <custom-input label="Email address" placeholder="example@mail.com" formControlName="email">
+    </custom-input>
+    <custom-input label="Full name" placeholder="John Doe" formControlName="fullname">
+    </custom-input>
+    <custom-input label="Phone number" formControlName="phone">
+    </custom-input>
+  </my-form-child>
+  <button type="submit" [disabled]="myFormFather.invalid">Save</button>
+</form>
+
+<div>
+  {{myFormFather.value | json}}
+</div>
